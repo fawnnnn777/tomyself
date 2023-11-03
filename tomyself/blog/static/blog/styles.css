@@ -1,0 +1,37 @@
+.navigation{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 5px;
+    background-color: #1f1f1f;
+    color: #e81509
+}
+
+.nav-item{
+    padding: 10px 5px;
+    color: #e81509;
+    text-decoration: none;
+}
+
+.nav-link{
+    text-decoration: none;
+    color: #e81509;
+}
+
+a:hover{
+ color: #d4d4d4;
+}
+
+.body{
+    text-align: center;
+}
+
+form{
+    padding: 70px 0;
+  text-align: center;
+  margin: auto;
+
+}
+
+body{
+    background-color: #d4d4d4;
+}
