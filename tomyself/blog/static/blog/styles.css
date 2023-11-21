@@ -25,7 +25,7 @@ a:hover{
     text-align: center;
 }
 
-form{
+.thought_form{
     padding: 70px 0;
   text-align: center;
   margin: auto;
@@ -34,4 +34,91 @@ form{
 
 body{
     background-color: #d4d4d4;
+}
+
+.thought{
+width: 80%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  resize: vertical;
+}
+
+.button-thought{
+background-color: #1f1f1f;
+  color: #e81509;
+  padding: 10px 20px;
+  border: none;
+  float: inline-end;
+  border-radius: 4px;
+  cursor: pointer;
+  position: absolute;
+  left: 80%;
+}
+
+.button-thought:hover{
+    background-color: white;
+
+}
+
+.entry{
+    width: 80%;
+    padding: 15px;
+    background-color: #1f1f1f;
+    color: white; 
+    margin: 10px;
+    border-radius: 15px;
+}
+
+.thought_text{
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.newform{
+    padding: 10px;
+}
+.profile_div{
+    text-align: center;
+    padding: 10px;
+}
+
+.biography_form{
+    display: inline-block;
+    margin: auto;
+}
+
+.biography_form > *{
+    margin: 10px;
+}
+
+textarea{
+    width: 100%;
+    height: 150px;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    resize: none;
+  }
+
+  .button-bio{
+    background-color: #1f1f1f;
+  color: #e81509;
+  padding: 10px 20px;
+  border: none;
+  float: inline-end;
+  border-radius: 4px;
+  cursor: pointer;
+  }
+
+  .button-bio:hover{
+    background-color: white;
+
+}
+
+#edit_profile{
+    text-align: center;
+    padding: 10px;
 }

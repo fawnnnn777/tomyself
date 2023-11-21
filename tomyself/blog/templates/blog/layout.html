@@ -7,10 +7,12 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <title> tomyself </title>
         <link href="{% static 'blog/styles.css' %}" rel="stylesheet">
+        {% block script %}
+        {% endblock %}
     </head>
     <body>
         <div class="navigation">
-            <h2 style="padding: 10px 5px;"> to myself </h2>
+            <a href="{% url 'index' %}"> <h2 style="padding: 10px 5px; color: red;"> to myself </h2></a>
             <div> 
                 {% if user.is_authenticated %}
                     Signed in as <h3> {{user.username}}</h3>
@@ -24,7 +26,7 @@
                     <a class="nav-link" href="{% url 'logout_view' %}"> logout</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#"> profile </a>
+                    <a id="profile" class="nav-link" href="{% url 'profile' %}"> profile </a>
                 </li>
                 {% endif %}
             </ul>

@@ -1,5 +1,27 @@
 {% extends 'blog/layout.html' %}
 
 {% block body %}
-    This is my blog! 
+{% if user.is_authenticated %}
+<div class="thought_div">
+    <form class="thought_form" action="{% url 'post' %}" method="post">
+        {% csrf_token %}
+        <textarea name="thought" class="thought" type="text" placeholder="what are you thinking about?"></textarea>
+        <br><br>
+        <input class="button-thought" type="submit" value="post">
+    </form>
+</div>
+    {% for thought in thoughts %}
+    <div class="entry">
+        <h3 style="color: #e81509;"> {{thought.user}} </h3>
+        <p class="thought_text" >{{thought.text}}</p>
+        {% for likes in thought.likes.all %}
+        <p> {{likes}} </p>
+        {% endfor %}
+        <form  class="newform" method="post" action="{% url 'likes' thought.id %}">
+            {% csrf_token %}
+            <input type="submit" value="like">
+        </form>
+    </div>
+    {% endfor %}
+{% endif %}
 {% endblock %}

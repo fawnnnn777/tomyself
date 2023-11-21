@@ -4,11 +4,18 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.db import IntegrityError
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
-from . models import User
+from . models import User, Thought
+from datetime import datetime
+
+
 
 @login_required(login_url='login/')
 def index(request):
-    return render(request, 'blog/index.html')
+    thoughts = Thought.objects.all()
+    context = {
+        'thoughts': thoughts
+    }
+    return render(request, 'blog/index.html', context)
 
 def login_view(request):
     if request.method == "GET":
@@ -47,5 +54,34 @@ def register(request):
 def logout_view(request):
     logout(request)
     return HttpResponseRedirect(reverse("index"))
+
+def post(request):
+    if request.method == "POST":
+        user = request.user
+        thought = request.POST['thought']
+        new_thought = Thought(user=user, text=thought, datetime=datetime.now())
+        new_thought.save()
+        return HttpResponseRedirect(reverse('index'))
+
+def profile(request):
+    if request.method == "POST":
+        bio = request.POST['bio']
+        user = User.objects.get(username=request.user)
+        user.biography = bio
+        user.save()
+        return HttpResponseRedirect(reverse('profile'))
+    thoughts = Thought.objects.filter(user=request.user)
+    user = User.objects.get(username=request.user)
+    return render(request, 'blog/profile.html',{
+        'user': user,
+        'thoughts': thoughts
+    })
+
+def like(request, id):
+    if request.method == "POST":
+        thought = Thought.objects.get(id=id)
+        thought.likes.add(request.user)
+        thought.save()
+        return HttpResponseRedirect(reverse('index'))
 
 # Create your views here.

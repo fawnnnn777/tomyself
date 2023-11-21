@@ -1,0 +1,40 @@
+{% extends 'blog/layout.html' %}
+{% load static %}
+
+{% block body %}
+
+    <div class="profile_div">
+        <button class="button-bio" id="edit"> edit </button>
+        <br><br>
+        <h1> {{user}}</h1>
+        {% if not user.biography %}
+        <form class="biography_form" method="post" action="{% url 'profile' %}">
+            {% csrf_token %}
+            write your bio: <textarea name="bio" maxlength="124"> </textarea>
+            <input class="button-bio" type="submit" value="post">
+             </form>
+        {% else %}
+        <p class="biography"> {{user.biography}} </p>
+        {% for thought in thoughts %}
+        <div class="entry">
+        <h3 style="color: #e81509;"> {{thought.user}} </h3>
+        <p class="thought_text" >{{thought.text}}</p>
+        </div>
+        {% endfor %}
+
+        {% endif %}
+    </div>
+
+    <div id="edit_profile">
+        <form class="biography_form" method="post" action="{% url 'profile' %}">
+            {% csrf_token %}
+            write your bio: <textarea autofocus name="bio" maxlength="124"> </textarea>
+            <input class="button-bio" type="submit" value="post">
+             </form>
+    </div>
+
+    
+{% block script %}
+<script src="{% static 'blog/blog.js' %}"></script>
+{% endblock %}
+{% endblock %}
