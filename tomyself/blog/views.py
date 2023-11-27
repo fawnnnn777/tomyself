@@ -13,7 +13,7 @@ from datetime import datetime
 def index(request):
     thoughts = Thought.objects.all()
     context = {
-        'thoughts': thoughts
+        'thoughts': thoughts.order_by("-datetime").all
     }
     return render(request, 'blog/index.html', context)
 
@@ -83,5 +83,11 @@ def like(request, id):
         thought.likes.add(request.user)
         thought.save()
         return HttpResponseRedirect(reverse('index'))
+    
+def delete(request, id):
+    thought = Thought.objects.get(id=id)
+    thought.delete()
+    return HttpResponseRedirect(reverse('index'))
+
 
 # Create your views here.

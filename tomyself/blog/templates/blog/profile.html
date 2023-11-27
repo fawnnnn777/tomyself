@@ -19,6 +19,9 @@
         <div class="entry">
         <h3 style="color: #e81509;"> {{thought.user}} </h3>
         <p class="thought_text" >{{thought.text}}</p>
+        <form id="delete_button" action="{% url 'delete' thought.id %}">
+            <input type="submit" value="delete" class="button">
+        </form>
         </div>
         {% endfor %}
 

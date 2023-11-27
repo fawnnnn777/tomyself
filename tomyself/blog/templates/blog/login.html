@@ -2,7 +2,7 @@
 
 {% block body %}
 
-<div class="container">
+<div class="login_container">
 <form action="{% url 'login_view' %}" method="post">
     {% csrf_token %}
     <div>
@@ -14,7 +14,7 @@
         <input type="password" id="password" name="password" required>
     </div>
     <div>
-        <input type="submit" value="Login">
+        <input class="button" type="submit" value="Login">
     </div>
 </form>
 </div>

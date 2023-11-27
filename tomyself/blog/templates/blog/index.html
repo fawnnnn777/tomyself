@@ -1,5 +1,5 @@
 {% extends 'blog/layout.html' %}
-
+{% load static %}
 {% block body %}
 {% if user.is_authenticated %}
 <div class="thought_div">
@@ -10,18 +10,36 @@
         <input class="button-thought" type="submit" value="post">
     </form>
 </div>
+
     {% for thought in thoughts %}
     <div class="entry">
+        <div class="thought_div">
         <h3 style="color: #e81509;"> {{thought.user}} </h3>
         <p class="thought_text" >{{thought.text}}</p>
-        {% for likes in thought.likes.all %}
-        <p> {{likes}} </p>
-        {% endfor %}
+    </div>
+        {% if thought.likes.all|length > 1 or thought.likes.all|length == 0 %}
+    <div class="likes_parent">
+        <a id="likes_amount"> {{thought.likes.all|length}} likes!</a>
+        {% else %}
+         <a id="likes_amount"> {{thought.likes.all|length}} like!</a>
+         {% endif %}
+        <div id="likes_users">
+            {% for likes in thought.likes.all %}
+            {{likes}}
+            {% endfor %}
+        </div>
+
+
         <form  class="newform" method="post" action="{% url 'likes' thought.id %}">
             {% csrf_token %}
-            <input type="submit" value="like">
+            <input class="button" type="submit" value="like">
         </form>
+        </div>
     </div>
     {% endfor %}
+
 {% endif %}
+{% block script %}
+<script src="{% static 'blog/blog.js' %}"></script>
+{% endblock %}
 {% endblock %}

@@ -122,3 +122,21 @@ textarea{
     text-align: center;
     padding: 10px;
 }
+
+.button{
+    background-color: #1f1f1f;
+    color: #e81509;
+    padding: 5px 20px;
+    border: solid white 1px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.button:hover{
+    background-color: white;
+
+}
+.login_container{
+    text-align: center;
+    padding: 15px;
+}
